@@ -1,0 +1,69 @@
+<script>
+
+
+var pp = '-webkit-';
+
+function Anim(elem, config, callback){
+	this.elem = elem;
+	this.config = config;
+	this.callback = callback || function(){};
+	this.isAnim = !1;
+	
+	this.init();
+}
+Anim.prototype = {
+	init:function(){
+		var s = this.elem.style,
+			p = s[pp+'transition-property'],
+			t = s[pp+'transition-duration'],
+			f = s[pp+'transition-timing-function'],
+			d = s[pp+'transition-delay'];
+		
+		if(p!='none'&&p!='all'){
+			p.split(',');
+			console.log(p.split(','));
+		}else{
+			p = "";
+		}
+	},
+	run:function(){
+		
+		
+		
+		return this;
+	},
+	stop:function(){
+		
+		
+		
+		return this;
+	},
+	onfinish:function(){
+		
+	}
+};
+
+
+
+
+
+window.onload = function(){
+	var h = document.getElementById('h');
+	var a = new Anim(h).run();
+	
+	console.log(a);
+};
+</script>
+
+
+
+<div id="h" style="display:block;
+  width:100px;
+  height:100px;
+  left:0;
+  top:0;
+  position:absolute;
+  -webkit-transition-property:left,width;
+  background-color:blue;">
+a
+</div>

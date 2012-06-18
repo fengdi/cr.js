@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<style type="text/css">
+		.hello{
+			color:red;
+			
+		}
+	</style>
+	<script type="text/javascript" src="../src/Cr.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+/************************** 测试 ****************************/
+
+//多个对象合并为一个对象
+console.warn("多个对象合并");
+$.log(Cr.merge({a:'a'},{b:'b'},{c:'c'}));
+
+
+//多态测试
+console.warn("多态测试");
+$.log(new Cr('s'));
+$.log(Cr());
+$.log(Cr);
+
+
+//继承测试
+console.warn("继承测试");
+
+function A(){
+
+}
+
+function B(n){
+
+}
+B.prototype = {
+}
+$.inherit(A,B, {
+	get ss(){
+		return 'return'+ this.aa;
+	},
+	set ss(s){
+		this.aa = 'set'+ s;
+	}
+});
+
+var a = new A('s');
+
+var b = new B('b');
+$.log(a,b);
+$.log('a instanceof B?',a instanceof B);
+
+
+//namespace测试
+console.warn("namespace测试");
+
+$.log($.namespace("var.tangoboy.ccc.hello"))
+$.log($.namespace(".test.a"))
+
+
+//type 类型测试
+console.warn("type 类型测试");
+
+$.log($.type(null));
+$.log($.type({}));
+$.log($.type([]));
+$.log($.type(''));
+$.log($.type(1));
+$.log($.type(new Date()));
+$.log($.type(/r/));
+$.log($.type(new Error()));
+$.log($.type(function(){}));
+$.log($.type(window));
+$.log($.type(document));
+$.log($.type(document.createElement('div')));
+$.log($.type(document.getElementsByTagName('*')));
+
+
+
+
+var h;
+$.dom.ready(function(s){
+	h = $.dom('.hello')[0];
+	
+	// dom.ready 测试
+	console.warn("dom.ready 测试");
+	$.log('ready:',this,s);
+	
+	//DOM测试
+	console.warn("DOM测试");
+	$.log($.dom('.hello'));
+	$.log($.dom('.hello>p'));
+	$.log($.dom('.hello').data('a'));
+	
+	
+	//动画测试
+	var h = $.dom('#h')[0];
+
+	var a = new $.Anim(h,[{
+			style : 'width:200px;',
+			duration : '3s',
+			easing :'linear',
+			delay : '0s'
+		},{
+			style : 'left:1000px;background-color:#ff0;',
+			duration : '1s',
+			easing :'linear',
+			delay : '1s'
+		}],
+	function(){
+		  console.log('finish!');
+	}).run();
+});
+
+
+
+
+//日志测试
+console.warn("日志测试");
+$.log('error:这是一个错误记录',{},"hello",['sa'],{'t':"asd"});
+$.log('log:这是一个日志记录', 1,"hello",{'t':"asd"});
+$.log($,$.dom);
+
+
+//异常测试
+//console.warn("异常测试");
+//$.error('异常');
+//$.error('异常', function(){});
+
+//path路径
+console.warn("path路径测试");
+$.log($.path);
+$.log($.url('http://abc.com:8080/dir/index.html?id=255&m=hello#top'));
+
+</script>
+
+
+
+<div id="h" style="display:block;
+  width:100px;
+  height:100px;
+  left:0;
+  top:0;
+  position:absolute;
+  background-color:blue;">
+a
+</div>
+<div class="hello as ss" data-a="name">
+	<a href="#">asdasd</a>asd
+	<p>asdas</p>
+	<input id="radio" type="radio" name="" checked="checked" id="" />
+</div>
+
+
+</body>
+</html>
